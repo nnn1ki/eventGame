@@ -1,0 +1,16 @@
+C:\Users\user\source\repos\eventsGame\bin\Debug\netcoreapp3.1\eventsGame.exe
+C:\Users\user\source\repos\eventsGame\bin\Debug\netcoreapp3.1\eventsGame.deps.json
+C:\Users\user\source\repos\eventsGame\bin\Debug\netcoreapp3.1\eventsGame.runtimeconfig.json
+C:\Users\user\source\repos\eventsGame\bin\Debug\netcoreapp3.1\eventsGame.runtimeconfig.dev.json
+C:\Users\user\source\repos\eventsGame\bin\Debug\netcoreapp3.1\eventsGame.dll
+C:\Users\user\source\repos\eventsGame\bin\Debug\netcoreapp3.1\eventsGame.pdb
+C:\Users\user\source\repos\eventsGame\obj\Debug\netcoreapp3.1\eventsGame.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\eventsGame\obj\Debug\netcoreapp3.1\eventsGame.Form1.resources
+C:\Users\user\source\repos\eventsGame\obj\Debug\netcoreapp3.1\eventsGame.csproj.GenerateResource.cache
+C:\Users\user\source\repos\eventsGame\obj\Debug\netcoreapp3.1\eventsGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\eventsGame\obj\Debug\netcoreapp3.1\eventsGame.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\eventsGame\obj\Debug\netcoreapp3.1\eventsGame.AssemblyInfo.cs
+C:\Users\user\source\repos\eventsGame\obj\Debug\netcoreapp3.1\eventsGame.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\eventsGame\obj\Debug\netcoreapp3.1\eventsGame.dll
+C:\Users\user\source\repos\eventsGame\obj\Debug\netcoreapp3.1\eventsGame.pdb
+C:\Users\user\source\repos\eventsGame\obj\Debug\netcoreapp3.1\eventsGame.genruntimeconfig.cache
