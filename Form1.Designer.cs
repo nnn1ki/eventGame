@@ -32,7 +32,6 @@ namespace eventsGame
             this.components = new System.ComponentModel.Container();
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txtLog = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,23 +51,15 @@ namespace eventsGame
             this.timer1.Interval = 30;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // txtLog
-            // 
-            this.txtLog.Location = new System.Drawing.Point(802, 13);
-            this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(302, 428);
-            this.txtLog.TabIndex = 1;
-            this.txtLog.Text = "";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1113, 461);
-            this.Controls.Add(this.txtLog);
+            this.ClientSize = new System.Drawing.Size(798, 461);
             this.Controls.Add(this.pbMain);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
             this.ResumeLayout(false);
 
@@ -78,7 +69,6 @@ namespace eventsGame
 
         private System.Windows.Forms.PictureBox pbMain;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.RichTextBox txtLog;
     }
 }
 
