@@ -20,7 +20,7 @@ namespace eventsGame.Objects
             g.DrawEllipse(new Pen(Color.Red), -10, -10, 20, 20);
         }
 
-        public override GraphicsPath GetGraphicsPath()
+        public override GraphicsPath GetGraphicsPath() 
         {
             var path = base.GetGraphicsPath();
             path.AddEllipse(-3, -3, 6, 6);

@@ -13,7 +13,7 @@ namespace eventsGame.Objects
         public float Y;
         public float Angle;
 
-        public Action<BaseObject, BaseObject> OnOverlap;
+        public Action<BaseObject, BaseObject> OnOverlap; //делегат
 
         public BaseObject(float x, float y, float angle)
         {
@@ -44,7 +44,7 @@ namespace eventsGame.Objects
         {
             if (this.OnOverlap != null)
             {
-                this.OnOverlap(this, obj);
+                this.OnOverlap(this, obj); //определяем делегата
             }
         }
 

@@ -8,7 +8,10 @@ namespace eventsGame.Objects
 {
     class Player : BaseObject
     {
-        public Action<Marker> OnMarkerOverlap;
+        //создаем переменные - делегаты
+        public Action<Marker> OnMarkerOverlap; 
+        public Action<Circle> OnCircleOverlap;
+
         public float vX, vY;
 
         public Player(float x, float y, float angle) : base(x, y, angle)
@@ -40,7 +43,14 @@ namespace eventsGame.Objects
 
             if (obj is Marker)
             {
-                OnMarkerOverlap(obj as Marker);
+                OnMarkerOverlap(obj as Marker); //определяем делегата
+                //возвращаем объект в качестве маркера
+            }
+
+            //если этот объект - круг, то его и возвращаем
+            if (obj is Circle)
+            {
+                OnCircleOverlap(obj as Circle); 
             }
         }
 
