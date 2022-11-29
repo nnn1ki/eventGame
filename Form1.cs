@@ -9,12 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-
 //БУДЕМ ДЕЛАТЬ 3 И 4 -ЫЕ ЗАДАНИЯ
-
-
-
 
 namespace eventsGame
 {
