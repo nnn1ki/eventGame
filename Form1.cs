@@ -16,21 +16,19 @@ namespace eventsGame
     public partial class Form1 : Form
     {
         Random rnd; //переменная рандома, привязываем ее к началу создания программы
-        
         Circle circle;
 
         List<BaseObject> оbjects = new List<BaseObject>();
         Player player;
         Marker marker;
-
+        int score = 0;
 
         public Form1()
         {
             InitializeComponent();
+            rnd = new Random(); 
 
-            rnd = new Random(); //привязываем к запуску программы
-
-            player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0); //создаем игрока по центру экрана
+            player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0); 
 
             player.OnOverlap += (p, obj) =>
             {
@@ -45,8 +43,9 @@ namespace eventsGame
 
             player.OnCircleOverlap += (m) =>
             {
-                оbjects.Remove(m); //удаляем круг, мы его достигли
+                оbjects.Remove(m); 
                 circle = null;
+                Score();
                 circleRender();
             };
 
@@ -55,8 +54,8 @@ namespace eventsGame
             оbjects.Add(marker);
             оbjects.Add(player);
 
-            circleRender(); //это первичный круг для начала игры
-            circleRender(); //добавим второй, чтобы у игрока был выбр к какому круги идти в первую очередь
+            circleRender(); 
+            circleRender(); 
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e) //событие отрисовки поля
@@ -88,9 +87,8 @@ namespace eventsGame
 
         private void updatePlayer()
         {
-            if (marker != null) //если маркер существует
+            if (marker != null) 
             {
-                //считаем расстояния до маркера
                 float dx = marker.X - player.X;
                 float dy = marker.Y - player.Y;
                 float length = MathF.Sqrt(dx * dx + dy * dy);
@@ -100,7 +98,7 @@ namespace eventsGame
                 player.vX += dx * 0.5f;
                 player.vY += dy * 0.5f;
 
-                player.Angle = 90 - MathF.Atan2(player.vX, player.vY) * 180 / MathF.PI; //считается угол, на который поворачивается игрок, чтобы приблизиться к маркеру
+                player.Angle = 90 - MathF.Atan2(player.vX, player.vY) * 180 / MathF.PI; 
             }
 
             player.vX += -player.vX * 0.1f;
@@ -110,42 +108,38 @@ namespace eventsGame
             player.Y += player.vY;
         }
 
-
         private void timer1_Tick(object sender, EventArgs e)
         {
-            pbMain.Invalidate(); //обновление поля для отрисовки
+            pbMain.Invalidate(); 
         }
 
 
         private void pbMain_MouseClick(object sender, MouseEventArgs e)
         {
-            // тут добавил создание маркера по клику если он еще не создан
             if (marker == null)
             {
-                marker = new Marker(0, 0, 0); //определяем нулевые положения
-                оbjects.Add(marker); // и главное не забыть пололжить в objects
+                marker = new Marker(0, 0, 0); 
+                оbjects.Add(marker); 
             }
 
-            //определяем положение по координатам нажатия
             marker.X = e.X;
             marker.Y = e.Y;
         }
 
-
-        //создание круга
         public void circleRender()
         {
-            //if (circle == null) 
-            //{
-            //    circle = new Circle(0, 0, 0); //создаем новый куг
-            //    оbjects.Add(circle); 
-            //}
-
-            circle = new Circle(0, 0, 0); //создаем новый куг
+            circle = new Circle(0, 0, 0);
             оbjects.Add(circle);
 
             circle.X = rnd.Next(0, pbMain.Width);
             circle.Y = rnd.Next(0, pbMain.Height);
+        }
+
+
+        private void Score()
+        {
+            score += 10;
+            totalLabel.Text = "Счет: " + score; 
         }
 
     }
