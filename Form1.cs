@@ -9,14 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//БУДЕМ ДЕЛАТЬ 3 И 4 -ЫЕ ЗАДАНИЯ
+//сделать очки игрока
 
 namespace eventsGame
 {
     public partial class Form1 : Form
     {
         Random rnd; //переменная рандома, привязываем ее к началу создания программы
-        Circle circle; 
+        
+        Circle circle;
+
         List<BaseObject> оbjects = new List<BaseObject>();
         Player player;
         Marker marker;
@@ -43,7 +45,7 @@ namespace eventsGame
 
             player.OnCircleOverlap += (m) =>
             {
-                оbjects.Remove(m);
+                оbjects.Remove(m); //удаляем круг, мы его достигли
                 circle = null;
                 circleRender();
             };
@@ -53,13 +55,8 @@ namespace eventsGame
             оbjects.Add(marker);
             оbjects.Add(player);
 
-            //нужно тут определить генерацию кружков
-            //нужно сделать тоже самое, что и с маркером, но генерироваться он должен самостоятельно 
-
-
             circleRender(); //это первичный круг для начала игры
-
-            //оbjects.Add(new Circle(50, 50, 0)); //определяем координаты крга в конструктор 
+            circleRender(); //добавим второй, чтобы у игрока был выбр к какому круги идти в первую очередь
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e) //событие отрисовки поля
@@ -138,12 +135,15 @@ namespace eventsGame
         //создание круга
         public void circleRender()
         {
-            if (circle == null) 
-            {
-                circle = new Circle(0, 0, 0); //создаем новый куг
-                оbjects.Add(circle); 
-            }
-            
+            //if (circle == null) 
+            //{
+            //    circle = new Circle(0, 0, 0); //создаем новый куг
+            //    оbjects.Add(circle); 
+            //}
+
+            circle = new Circle(0, 0, 0); //создаем новый куг
+            оbjects.Add(circle);
+
             circle.X = rnd.Next(0, pbMain.Width);
             circle.Y = rnd.Next(0, pbMain.Height);
         }
