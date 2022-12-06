@@ -33,7 +33,11 @@ namespace eventsGame
 
             player.OnOverlap += (p, obj) =>
             {
-                txtLog.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLog.Text;
+                if (obj != redCircle)
+                {
+                    txtLog.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLog.Text;
+                }
+                
             };
 
             player.OnMarkerOverlap += (m) =>
@@ -50,6 +54,8 @@ namespace eventsGame
                 circleRender();
             };
 
+
+
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
 
             оbjects.Add(marker);
@@ -57,6 +63,11 @@ namespace eventsGame
            
 
             redCircleRender();
+
+            //redCircle.OnCrclOverlap += (m) =>
+            //{
+            //    circle.sum = 9;
+            //};
 
             circleRender(); 
             circleRender(); 
@@ -124,6 +135,8 @@ namespace eventsGame
            
             if (redCircle.time < redCircle.dieTime)
             {
+
+
                 redCircle.changeSize(); //изменяем размеры с течением времени
                 redCircle.time++;
             }
@@ -151,11 +164,29 @@ namespace eventsGame
         public void redCircleRender()
         {
             redCircle = new RedCircle(0, 0, 0);
-            
+
+            bool flag = true; 
+
+            redCircle.OnOverlap += (p, obj) =>
+            {
+                if (flag) //какой-то костыль
+                {
+                    txtLog.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Красный круг пересекся с {obj}\n" + txtLog.Text;
+                    flag = false;
+                    minesScore();
+                }
+            };
+
+            redCircle.OnPlayerOverlap += (m) =>
+            {
+                //score--;
+            };
+
+
             оbjects.Add(redCircle);
            
             redCircle.time = 0;
-            redCircle.dieTime = rnd.Next(1000);
+            redCircle.dieTime = rnd.Next(500);
             
 
             redCircle.X = rnd.Next(0, pbMain.Width / 2);
@@ -179,6 +210,13 @@ namespace eventsGame
             score += circle.sum;
             totalLabel.Text = "Счет: " + score; 
         }
+
+        private void minesScore()
+        {
+            score--;
+            totalLabel.Text = "Счет: " + score;
+        }
+
 
     }
 }

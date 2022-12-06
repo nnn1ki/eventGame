@@ -23,12 +23,6 @@ namespace eventsGame.Objects
                -15, -15,
                30, 30
            );
-
-            //g.DrawEllipse(
-            //    new Pen(Color.Green, 2),
-            //    -15, -15,
-            //    30, 30
-            //);
         }
 
         public override GraphicsPath GetGraphicsPath()
