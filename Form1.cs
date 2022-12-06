@@ -57,7 +57,7 @@ namespace eventsGame
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
 
             оbjects.Add(marker);
-            оbjects.Add(player);
+            оbjects.Add(player); //добавляем в конец
            
             redCircleRender();
 
@@ -159,7 +159,7 @@ namespace eventsGame
                 }
             };
 
-            оbjects.Add(redCircle);
+            оbjects.Insert(0, redCircle); //добавим в начало списка
            
             redCircle.time = 0;
             redCircle.dieTime = rnd.Next(500);
@@ -171,7 +171,7 @@ namespace eventsGame
         public void circleRender()
         {
             circle = new Circle(0, 0, 0);
-            оbjects.Add(circle);
+            оbjects.Insert(1, circle); //добавляем всегда вторым, после красного круга
 
             circle.X = rnd.Next(0, pbMain.Width);
             circle.Y = rnd.Next(0, pbMain.Height);

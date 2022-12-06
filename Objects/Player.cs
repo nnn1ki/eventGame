@@ -57,6 +57,7 @@ namespace eventsGame.Objects
 
 
 
+
         }
 
         public override GraphicsPath GetGraphicsPath()
