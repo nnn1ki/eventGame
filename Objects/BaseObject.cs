@@ -59,7 +59,7 @@ namespace eventsGame.Objects
 
         public virtual void Render(Graphics g)
         {
-            
+            //для каждого объекта он свой
         }
     }
 }

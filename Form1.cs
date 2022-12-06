@@ -9,7 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//сделать очки игрока
+//Добавить красный увеличивающийся в размера круг при пересечении с которым количество очков уменьшается на 1,
+//а круг сбрасывает свой размер и меняет позицию
 
 namespace eventsGame
 {
@@ -17,11 +18,11 @@ namespace eventsGame
     {
         Random rnd; //переменная рандома, привязываем ее к началу создания программы
         Circle circle;
-
-        List<BaseObject> оbjects = new List<BaseObject>();
+        RedCircle redCircle;
         Player player;
         Marker marker;
-        int score = 0;
+        List<BaseObject> оbjects = new List<BaseObject>();
+        int score = 0; //имеет смылсл выносить это в свойство игрока
 
         public Form1()
         {
@@ -43,9 +44,9 @@ namespace eventsGame
 
             player.OnCircleOverlap += (m) =>
             {
+                Score();
                 оbjects.Remove(m); 
                 circle = null;
-                Score();
                 circleRender();
             };
 
@@ -53,6 +54,9 @@ namespace eventsGame
 
             оbjects.Add(marker);
             оbjects.Add(player);
+           
+
+            redCircleRender();
 
             circleRender(); 
             circleRender(); 
@@ -64,7 +68,6 @@ namespace eventsGame
             g.Clear(Color.White); //стираем все что было 
 
             updatePlayer();
-            
 
             // пересчитываем пересечения
             foreach (var obj in оbjects.ToList())
@@ -74,6 +77,12 @@ namespace eventsGame
                     player.Overlap(obj); //игрок пересек объект
                     obj.Overlap(player); //объект пересек игрока
                 }
+
+                //if(obj != circle && obj != player && redCircle.Overlaps(obj, g))
+                //{
+                //    redCircle.Overlaps(obj); 
+                //}
+
             }
 
             // рендерим объекты
@@ -108,9 +117,22 @@ namespace eventsGame
             player.Y += player.vY;
         }
 
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            pbMain.Invalidate(); 
+            pbMain.Invalidate();
+           
+            if (redCircle.time < redCircle.dieTime)
+            {
+                redCircle.changeSize(); //изменяем размеры с течением времени
+                redCircle.time++;
+            }
+            else
+            {
+                оbjects.Remove(redCircle);
+                redCircleRender();
+            }
+            
         }
 
 
@@ -126,6 +148,22 @@ namespace eventsGame
             marker.Y = e.Y;
         }
 
+        public void redCircleRender()
+        {
+            redCircle = new RedCircle(0, 0, 0);
+            
+            оbjects.Add(redCircle);
+           
+            redCircle.time = 0;
+            redCircle.dieTime = rnd.Next(1000);
+            
+
+            redCircle.X = rnd.Next(0, pbMain.Width / 2);
+            redCircle.Y = rnd.Next(0, pbMain.Height / 2);
+
+
+        }
+
         public void circleRender()
         {
             circle = new Circle(0, 0, 0);
@@ -138,7 +176,7 @@ namespace eventsGame
 
         private void Score()
         {
-            score += 10;
+            score += circle.sum;
             totalLabel.Text = "Счет: " + score; 
         }
 

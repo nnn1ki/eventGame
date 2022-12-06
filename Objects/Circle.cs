@@ -9,6 +9,9 @@ namespace eventsGame.Objects
 {
     class Circle : BaseObject
     {
+        public int sum = 10; 
+
+
         public Circle(float x, float y, float angle) : base(x, y, angle)
         {
         }
@@ -21,11 +24,11 @@ namespace eventsGame.Objects
                30, 30
            );
 
-            g.DrawEllipse(
-                new Pen(Color.Green, 2),
-                -15, -15,
-                30, 30
-            );
+            //g.DrawEllipse(
+            //    new Pen(Color.Green, 2),
+            //    -15, -15,
+            //    30, 30
+            //);
         }
 
         public override GraphicsPath GetGraphicsPath()
