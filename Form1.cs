@@ -42,7 +42,7 @@ namespace eventsGame
 
             player.OnMarkerOverlap += (m) =>
             {
-                оbjects.Remove(m); // удаляем маркер те мы его достигли
+                оbjects.Remove(m);
                 marker = null;
             };
 
@@ -54,20 +54,12 @@ namespace eventsGame
                 circleRender();
             };
 
-
-
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
 
             оbjects.Add(marker);
             оbjects.Add(player);
            
-
             redCircleRender();
-
-            //redCircle.OnCrclOverlap += (m) =>
-            //{
-            //    circle.sum = 9;
-            //};
 
             circleRender(); 
             circleRender(); 
@@ -75,12 +67,12 @@ namespace eventsGame
 
         private void pbMain_Paint(object sender, PaintEventArgs e) //событие отрисовки поля
         {
-            var g = e.Graphics; //забираем все параметры в g 
-            g.Clear(Color.White); //стираем все что было 
+            var g = e.Graphics; 
+            g.Clear(Color.White); 
 
             updatePlayer();
 
-            // пересчитываем пересечения
+            //пересчитываем пересечения
             foreach (var obj in оbjects.ToList())
             {
                 if (obj != player && player.Overlaps(obj, g))
@@ -88,21 +80,14 @@ namespace eventsGame
                     player.Overlap(obj); //игрок пересек объект
                     obj.Overlap(player); //объект пересек игрока
                 }
-
-                //if(obj != circle && obj != player && redCircle.Overlaps(obj, g))
-                //{
-                //    redCircle.Overlaps(obj); 
-                //}
-
             }
 
-            // рендерим объекты
+            //рендерим объекты
             foreach (var obj in оbjects)
             {
                 g.Transform = obj.GetTransform();
                 obj.Render(g);
             }
-
         }
 
         private void updatePlayer()
@@ -126,8 +111,8 @@ namespace eventsGame
 
             player.X += player.vX;
             player.Y += player.vY;
-        }
 
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -135,19 +120,16 @@ namespace eventsGame
            
             if (redCircle.time < redCircle.dieTime)
             {
-
-
-                redCircle.changeSize(); //изменяем размеры с течением времени
+                redCircle.changeSize();
                 redCircle.time++;
+
             }
             else
             {
                 оbjects.Remove(redCircle);
                 redCircleRender();
             }
-            
         }
-
 
         private void pbMain_MouseClick(object sender, MouseEventArgs e)
         {
@@ -165,7 +147,7 @@ namespace eventsGame
         {
             redCircle = new RedCircle(0, 0, 0);
 
-            bool flag = true; 
+            bool flag = true;
 
             redCircle.OnOverlap += (p, obj) =>
             {
@@ -177,22 +159,13 @@ namespace eventsGame
                 }
             };
 
-            redCircle.OnPlayerOverlap += (m) =>
-            {
-                //score--;
-            };
-
-
             оbjects.Add(redCircle);
            
             redCircle.time = 0;
             redCircle.dieTime = rnd.Next(500);
             
-
             redCircle.X = rnd.Next(0, pbMain.Width / 2);
             redCircle.Y = rnd.Next(0, pbMain.Height / 2);
-
-
         }
 
         public void circleRender()
@@ -203,7 +176,6 @@ namespace eventsGame
             circle.X = rnd.Next(0, pbMain.Width);
             circle.Y = rnd.Next(0, pbMain.Height);
         }
-
 
         private void Score()
         {
@@ -216,7 +188,5 @@ namespace eventsGame
             score--;
             totalLabel.Text = "Счет: " + score;
         }
-
-
     }
 }

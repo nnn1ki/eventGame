@@ -61,5 +61,7 @@ namespace eventsGame.Objects
         {
             //для каждого объекта он свой
         }
+
+
     }
 }

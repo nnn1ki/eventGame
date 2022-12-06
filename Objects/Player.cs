@@ -12,6 +12,7 @@ namespace eventsGame.Objects
         public Action<Marker> OnMarkerOverlap; 
         public Action<Circle> OnCircleOverlap;
 
+
         public float vX, vY;
 
         public Player(float x, float y, float angle) : base(x, y, angle)
@@ -52,6 +53,10 @@ namespace eventsGame.Objects
             {
                 OnCircleOverlap(obj as Circle); 
             }
+
+
+
+
         }
 
         public override GraphicsPath GetGraphicsPath()

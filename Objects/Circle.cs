@@ -31,5 +31,6 @@ namespace eventsGame.Objects
             path.AddEllipse(-3, -3, 6, 6);
             return path;
         }
+
     }
 }
